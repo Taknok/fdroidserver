@@ -1250,7 +1250,7 @@ def get_source_date_epoch(build_dir):
         build_dir = Path(build_dir)
         appid = build_dir.name
         data_dir = build_dir.parent.parent
-        metadata_file = f'metadata/{appid}.yml'*
+        metadata_file = f'metadata/{appid}.yml'
         print("+++++")
         print((data_dir / '.git').exists())
         print( (data_dir / metadata_file).exists())
