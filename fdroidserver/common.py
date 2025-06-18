@@ -3297,7 +3297,7 @@ def set_FDroidPopen_env(app=None, build=None):
     if app:
         env['SOURCE_DATE_EPOCH'] = get_source_date_epoch(get_build_dir(app))
         print(env)
-        print("----"
+        print("----")
     if build is not None:
         path = build.ndk_path()
         paths = orig_path.split(os.pathsep)
