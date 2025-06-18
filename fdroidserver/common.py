@@ -1240,6 +1240,13 @@ def get_source_date_epoch(build_dir):
     try:
         print("get_source_date_epoch")
         print(build_dir)
+        print(env)
+        import subprocess
+        print(subprocess.run(["ls", "-l"]))
+        print(":::::")
+        print(subprocess.run(["ls", "-l", "build"]))
+        print("!!!!!!")
+        print(subprocess.run(["ls", "-l", build_dir]))
         a = git.repo.Repo(build_dir).git.log(n=1, pretty='%ct')
         print(a)
         return a
