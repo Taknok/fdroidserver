@@ -1238,7 +1238,11 @@ def get_source_date_epoch(build_dir):
 
     """
     try:
-        return git.repo.Repo(build_dir).git.log(n=1, pretty='%ct')
+        print("get_source_date_epoch")
+        print(build_dir)
+        a = git.repo.Repo(build_dir).git.log(n=1, pretty='%ct')
+        print(a)
+        return a
     except Exception as e:
         logging.warning('%s: %s', e.__class__.__name__, build_dir)
         build_dir = Path(build_dir)
@@ -3084,6 +3088,9 @@ def FDroidPopenBytes(commands, cwd=None, envs=None, output=True, stderr_to_stdou
     A PopenResult.
     """
     global env
+    print("FDroidPopenBytes")
+    print(env)
+    print("----")
     if env is None:
         set_FDroidPopen_env()
 
@@ -3284,8 +3291,13 @@ def set_FDroidPopen_env(app=None, build=None):
     if missinglocale:
         env['LANG'] = 'en_US.UTF-8'
 
+    print("set_FDroidPopen_env")
+    print(app)
+    print("----")
     if app:
         env['SOURCE_DATE_EPOCH'] = get_source_date_epoch(get_build_dir(app))
+        print(env)
+        print("----"
     if build is not None:
         path = build.ndk_path()
         paths = orig_path.split(os.pathsep)
