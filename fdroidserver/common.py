@@ -1244,11 +1244,17 @@ def get_source_date_epoch(build_dir):
         print(a)
         return a
     except Exception as e:
+        print('%s: %s', e.__class__.__name__, build_dir)
+        print(e)
         logging.warning('%s: %s', e.__class__.__name__, build_dir)
         build_dir = Path(build_dir)
         appid = build_dir.name
         data_dir = build_dir.parent.parent
-        metadata_file = f'metadata/{appid}.yml'
+        metadata_file = f'metadata/{appid}.yml'*
+        print("+++++")
+        print((data_dir / '.git').exists())
+        print( (data_dir / metadata_file).exists())
+        print("+++++")
         if (data_dir / '.git').exists() and (data_dir / metadata_file).exists():
             repo = git.repo.Repo(data_dir)
             return repo.git.log('-n1', '--pretty=%ct', '--', metadata_file)
