@@ -1241,22 +1241,18 @@ def get_source_date_epoch(build_dir):
         print("get_source_date_epoch")
         print(build_dir)
         print(env)
-        import subprocess
-        p = subprocess.run(["ls", "-l"], shell=True, capture_output=True, text=True)
-        print(p.stdout)
-        print(":::::")
-        print(p.stderr)
-        print("!!!!!!")
-        p2 = subprocess.run(["ls", "-l", "build"], shell=True, capture_output=True, text=True)
-        print(p2.stdout)
-        print(":::::")
-        print(p2.stderr)
-        print("!!!!!!")
-        p3 = subprocess.run(["ls", "-l", build_dir], shell=True, capture_output=True, text=True)
-        print(p3.stdout)
-        print(":::::")
-        print(p3.stderr)
-        print("!!!!!!")
+        import os
+
+        paths = ['.', 'build', 'build/com.test']
+
+        for path in paths:
+            print(f"Contents of '{path}':")
+            if os.path.exists(path):
+                for item in os.listdir(path):
+                    print(" -", item)
+            else:
+                print(" (Path does not exist)")
+            print()
         a = git.repo.Repo(build_dir).git.log(n=1, pretty='%ct')
         print(a)
         return a
